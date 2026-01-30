@@ -14,14 +14,39 @@
         font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
         background: #020617;
         color: #e2e8f0;
-        display: grid;
-        place-items: center;
         min-height: 100vh;
+      }
+
+      header {
+        padding: 1.5rem 1.5rem 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.95rem;
+      }
+
+      nav a {
+        color: #e2e8f0;
+        text-decoration: none;
+        letter-spacing: 0.01em;
+      }
+
+      nav a:hover {
+        color: #a5b4fc;
       }
 
       main {
         text-align: center;
-        padding: 4rem 1.5rem;
+        padding: 3rem 1.5rem 4rem;
+        display: grid;
+        place-items: center;
       }
 
       h1 {
@@ -40,6 +65,14 @@
     </style>
   </head>
   <body>
+    <header>
+      <nav aria-label="Primary">
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/">MarketEdge Global</a>
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/#features">Features</a>
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/#insights">Insights</a>
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/#contact">Contact</a>
+      </nav>
+    </header>
     <main>
       <h1>Get Started Now</h1>
       <p>Return to the <a href="/marketedgeglobal/">homepage</a>.</p>
