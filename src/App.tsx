@@ -35,7 +35,7 @@ function App() {
     {
       role: "assistant",
       content:
-        "Hi! I’m the MarketEdge assistant. Ask me about insights, regions, or competitive trends.",
+        "Hi! I’m the MarketEdge BD Assistant. Ask me about regions, accounts, or competitive trends.",
     },
   ]);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -129,15 +129,15 @@ function App() {
               turn complex data into clear action plans.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
+              <a
                 className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
-                onClick={() => setIsChatOpen(true)}
+                href={`${import.meta.env.BASE_URL}get-started/`}
               >
                 Get started
-              </button>
+              </a>
               <a
                 className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
-                href={`${import.meta.env.BASE_URL}explore-platform/`}
+                href="#bd-assistant"
               >
                 Explore platform
               </a>
@@ -235,6 +235,33 @@ function App() {
           </div>
         </section>
 
+        <section id="bd-assistant" className="border-t border-slate-900 bg-slate-950/60">
+          <div className="mx-auto max-w-6xl px-6 py-16">
+            <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">BD Assistant</p>
+                <h3 className="text-3xl font-semibold">Accelerate business development with AI</h3>
+                <p className="text-sm text-slate-400">
+                  Ask the BD Assistant for regional insights, account briefs, and competitive positioning.
+                </p>
+                <button
+                  className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
+                  onClick={() => setIsChatOpen(true)}
+                >
+                  Open BD Assistant
+                </button>
+              </div>
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
+                <ul className="space-y-4 text-sm text-slate-300">
+                  <li>• Draft outreach notes and call prep in seconds.</li>
+                  <li>• Compare segment performance by region or vertical.</li>
+                  <li>• Summarize shifts in pricing and competitive moves.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" className="border-t border-slate-900 bg-slate-950/60">
           <div className="mx-auto max-w-6xl px-6 py-16">
             <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-10 text-center">
@@ -270,8 +297,8 @@ function App() {
           <div className="absolute bottom-6 right-6 flex w-[min(420px,90vw)] flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
               <div>
-                <div className="text-sm font-semibold">MarketEdge Assistant</div>
-                <div className="text-xs text-slate-400">Ask about performance, trends, or strategy.</div>
+                <div className="text-sm font-semibold">MarketEdge BD Assistant</div>
+                <div className="text-xs text-slate-400">Ask about accounts, regions, or strategy.</div>
               </div>
               <button
                 className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300"
@@ -309,7 +336,7 @@ function App() {
                 <input
                   ref={inputRef}
                   className="flex-1 rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm text-slate-100 outline-none focus:border-indigo-500"
-                  placeholder="Ask the assistant..."
+                  placeholder="Ask the BD Assistant..."
                   value={inputValue}
                   onChange={(event) => setInputValue(event.target.value)}
                   onKeyDown={(event) => {
