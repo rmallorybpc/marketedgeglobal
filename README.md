@@ -1,53 +1,64 @@
-# MarketEdge Global
+# MarketEdge Global Web
 
-Welcome to MarketEdge Global! This repository contains the codebase for our project.
+MarketEdge Global is a React + TypeScript web application built with Vite. The project uses Tailwind CSS for utility styling and Material UI for components.
 
-## About
+## Tech Stack
 
-MarketEdge Global is a project initialized with essential Git repository files and structure.
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Material UI
+- React Router
+
+## Prerequisites
+
+- Node.js 18+ (recommended)
+- npm 9+
+
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+Lint the codebase:
+
+```bash
+npm run lint
+```
 
 ## Project Structure
 
 ```
 .
-├── src/           # Source code
-├── docs/          # Documentation
-├── tests/         # Test files
-├── README.md      # This file
-├── LICENSE        # MIT License
-├── CONTRIBUTING.md # Contribution guidelines
-└── .gitignore     # Git ignore patterns
+├── src/                 # Application source
+├── index.html           # HTML entry
+├── vite.config.ts       # Vite config
+├── tailwind.config.js   # Tailwind config
+└── tsconfig*.json       # TypeScript config
 ```
 
-## Getting Started
+## Notes
 
-### Prerequisites
-
-- Git installed on your system
-- [Additional prerequisites based on your project needs]
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/rmallorybpc/marketedgeglobal.git
-   cd marketedgeglobal
-   ```
-
-2. [Additional installation steps]
-
-## Usage
-
-[Add usage instructions here]
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or support, please open an issue on GitHub.
+If you are setting up new routes or layouts, check `src/main.tsx` and the components in `src/layout`.
