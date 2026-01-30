@@ -53,12 +53,12 @@ function HomePage({ onOpenChat }: PageProps) {
             >
               Get started
             </a>
-            <Link
+            <a
               className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
-              to="/explore-platform/bd-assistant/"
+              href={`${import.meta.env.BASE_URL}explore-platform/`}
             >
               Explore platform
-            </Link>
+            </a>
           </div>
           <div className="flex flex-wrap gap-6 pt-6">
             {stats.map((stat) => (
@@ -241,6 +241,134 @@ function BdAssistantPage({ onOpenChat }: PageProps) {
   );
 }
 
+function FeaturesPage() {
+  return (
+    <>
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+          <div className="space-y-5">
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Platform features</p>
+            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+              Everything your team needs to move faster.
+            </h1>
+            <p className="text-lg text-slate-300">
+              Unify market signals, automate reporting, and act on real-time intelligence across regions.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
+                href={`${import.meta.env.BASE_URL}get-started/`}
+              >
+                Get started
+              </a>
+              <Link
+                className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
+                to="/"
+              >
+                Back to overview
+              </Link>
+            </div>
+          </div>
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
+            <div className="space-y-4 text-sm text-slate-300">
+              <div className="flex items-center justify-between">
+                <span>Weekly insight refresh</span>
+                <span className="font-semibold text-emerald-400">+32%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Automated report time saved</span>
+                <span className="font-semibold text-emerald-400">18 hrs</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Coverage across segments</span>
+                <span className="font-semibold text-emerald-400">14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-900 bg-slate-950/60">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10 max-w-2xl">
+            <h2 className="text-3xl font-semibold">Core capabilities</h2>
+            <p className="mt-3 text-slate-400">
+              From discovery to executive reporting, MarketEdge Global keeps every stakeholder aligned.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              >
+                <h3 className="text-lg font-semibold">{feature.title}</h3>
+                <p className="mt-3 text-sm text-slate-400">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Automation</p>
+            <h3 className="mt-3 text-2xl font-semibold">Reporting without the rush</h3>
+            <ul className="mt-6 space-y-4 text-sm text-slate-300">
+              <li>• Auto-generate weekly and quarterly briefings.</li>
+              <li>• Standardize visuals across regions and teams.</li>
+              <li>• Export slides and summaries in one click.</li>
+            </ul>
+          </div>
+          <div className="space-y-6">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+              <h4 className="text-lg font-semibold">Competitive intelligence</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Track pricing, positioning, and share-of-wallet shifts with continuous updates.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+              <h4 className="text-lg font-semibold">Segment dashboards</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Slice insights by region, vertical, or account tier for fast prioritization.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+              <h4 className="text-lg font-semibold">Governed collaboration</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Share insights securely with role-based controls and audit-ready workflows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-900 bg-slate-950/60">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-10 text-center">
+            <h2 className="text-3xl font-semibold">See the full feature set in action</h2>
+            <p className="mt-3 text-slate-400">
+              Schedule a guided walkthrough tailored to your regions and reporting cadence.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <button className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold">
+                Schedule a demo
+              </button>
+              <Link
+                className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
+                to="/explore-platform/bd-assistant/"
+              >
+                Explore BD Assistant
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -250,9 +378,9 @@ function Layout({ children }: { children: ReactNode }) {
             MarketEdge Global
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-            <a className="hover:text-white" href={`${import.meta.env.BASE_URL}#features`}>
+            <Link className="hover:text-white" to="/features/">
               Features
-            </a>
+            </Link>
             <a className="hover:text-white" href={`${import.meta.env.BASE_URL}#insights`}>
               Insights
             </a>
@@ -357,6 +485,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage onOpenChat={() => setIsChatOpen(true)} />} />
+          <Route path="/features/" element={<FeaturesPage />} />
           <Route
             path="/explore-platform/bd-assistant/"
             element={<BdAssistantPage onOpenChat={() => setIsChatOpen(true)} />}
