@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Explore Platform | MarketEdge Global</title>
+    <title>BD Assistant | MarketEdge Global</title>
     <style>
       :root {
         color-scheme: dark;
@@ -25,7 +25,7 @@
 
       nav {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
@@ -36,16 +36,22 @@
         color: #e2e8f0;
         text-decoration: none;
         letter-spacing: 0.01em;
+        padding: 0.65rem 1.25rem;
+        border-radius: 999px;
+        border: 1px solid #1e293b;
+        background: #0b1220;
+        font-weight: 600;
       }
 
       nav a:hover {
-        color: #a5b4fc;
+        border-color: #818cf8;
+        color: #e0e7ff;
       }
 
       main {
         padding: 3rem 1.5rem 4rem;
         display: grid;
-        gap: 2.5rem;
+        gap: 2rem;
         place-items: center;
         text-align: center;
       }
@@ -61,19 +67,19 @@
       }
 
       .card {
-        max-width: 720px;
-        width: min(720px, 100%);
+        max-width: 760px;
+        width: min(760px, 100%);
         border-radius: 1.5rem;
         border: 1px solid #1e293b;
         background: #0f172a;
-        padding: 2rem;
+        padding: 2.25rem;
         display: grid;
         gap: 1.5rem;
       }
 
       .card h2 {
         margin: 0;
-        font-size: 1.75rem;
+        font-size: 2rem;
       }
 
       .button-row {
@@ -85,7 +91,7 @@
 
       .button-row a {
         text-decoration: none;
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 1.6rem;
         border-radius: 999px;
         border: 1px solid #334155;
         color: #e2e8f0;
@@ -109,67 +115,57 @@
         color: #0f172a;
       }
 
-      .menu-grid {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
         display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.75rem;
+        color: #cbd5f5;
       }
 
-      .menu-grid a {
-        text-decoration: none;
-        padding: 0.85rem 1.25rem;
-        border-radius: 0.85rem;
-        border: 1px solid #1e293b;
-        background: #0b1220;
-        color: #e2e8f0;
-        font-weight: 600;
+      li {
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+        justify-content: center;
       }
 
-      .menu-grid a:hover {
-        border-color: #818cf8;
-        color: #e0e7ff;
-      }
-
-      a {
-        color: #a5b4fc;
+      li span {
+        color: #818cf8;
       }
     </style>
   </head>
   <body>
     <header>
       <nav aria-label="Primary">
-        <a href="https://rmallorybpc.github.io/marketedgeglobal/">MarketEdge Global</a>
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/">Home</a>
+        <a href="https://rmallorybpc.github.io/marketedgeglobal/explore-platform/">Explore platform</a>
         <a href="https://rmallorybpc.github.io/marketedgeglobal/#features">Features</a>
-        <a href="https://rmallorybpc.github.io/marketedgeglobal/#insights">Insights</a>
         <a href="https://rmallorybpc.github.io/marketedgeglobal/#contact">Contact</a>
       </nav>
     </header>
     <main>
-      <div>
-        <h1>Explore Platform</h1>
-        <p>Choose a workspace or jump to a section of MarketEdge Global.</p>
-      </div>
-
-      <section class="card" aria-label="MarketEdge BD Assistant">
+      <section class="card" aria-label="BD Assistant">
         <div>
-          <h2>MarketEdge BD Assistant</h2>
-          <p>
-            Accelerate business development with guided insights, outreach planning, and
-            opportunity tracking.
+          <p style="text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; color: #94a3b8;">
+            BD Assistant
           </p>
+          <h2>Accelerate business development with AI</h2>
+          <p>Ask the BD Assistant for regional insights, account briefs, and competitive positioning.</p>
         </div>
         <div class="button-row">
-          <a
-            class="primary-button"
-            href="https://rmallorybpc.github.io/marketedgeglobal/explore-platform/bd-assistant/"
-          >
-            BD Assistant
+          <a class="primary-button" href="https://rmallorybpc.github.io/marketedgeglobal/#bd-assistant">
+            Open BD Assistant
           </a>
-          <a href="https://rmallorybpc.github.io/marketedgeglobal/">Back to overview</a>
+          <a href="https://rmallorybpc.github.io/marketedgeglobal/explore-platform/">Back to Explore Platform</a>
         </div>
+        <ul>
+          <li><span>•</span>Draft outreach notes and call prep in seconds.</li>
+          <li><span>•</span>Compare segment performance by region or vertical.</li>
+          <li><span>•</span>Summarize shifts in pricing and competitive moves.</li>
+        </ul>
       </section>
-
-      <p>Return to the <a href="/">homepage</a>.</p>
     </main>
   </body>
 </html>

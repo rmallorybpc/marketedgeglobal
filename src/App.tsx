@@ -137,7 +137,7 @@ function App() {
               </a>
               <a
                 className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
-                href="#bd-assistant"
+                href={`${import.meta.env.BASE_URL}explore-platform/bd-assistant/`}
               >
                 Explore platform
               </a>
