@@ -60,6 +60,14 @@
         color: #94a3b8;
       }
 
+      .text-overline {
+        margin: 0 0 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.7rem;
+        color: #64748b;
+      }
+
       .card {
         max-width: 720px;
         width: min(720px, 100%);
@@ -115,6 +123,18 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
 
+      .split-grid {
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      @media (min-width: 900px) {
+        .split-grid {
+          grid-template-columns: 1.05fr 0.95fr;
+        }
+      }
+
       .menu-grid a {
         text-decoration: none;
         padding: 0.85rem 1.25rem;
@@ -166,15 +186,30 @@
       </nav>
     </header>
     <main>
-      <div>
-        <h1>Explore Platform</h1>
-        <p>Choose a workspace or jump to a section of MarketEdge Global.</p>
-      </div>
-
-      <section class="menu-grid" aria-labelledby="ranking-tool">
+      <section class="split-grid" aria-labelledby="explore-platform">
         <div>
-          <h2 id="ranking-tool">RANKING TOOL</h2>
-          <p>Compare value chains</p>
+          <p class="text-overline">Explore Platform</p>
+          <h1 id="explore-platform">Explore MarketEdge capabilities</h1>
+          <p>Review the platform highlights and open the BD Assistant when you need real-time support.</p>
+          <div class="button-row">
+            <a class="primary-button" href="https://marketedgeglobal.github.io/marketedgeglobal/">
+              Open BD Assistant
+            </a>
+          </div>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span>•</span>Generate briefs for high-priority accounts.</li>
+            <li><span>•</span>Compare segment performance across regions.</li>
+            <li><span>•</span>Summarize competitive shifts in minutes.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="split-grid" aria-labelledby="ranking-tool">
+        <div>
+          <p class="text-overline">Ranking Tool</p>
+          <h2 id="ranking-tool">Compare value chains</h2>
           <p>
             Compares value chains such as climate‑smart rice, shrimp, and bananas, highlighting relative strengths and
             weaknesses.
