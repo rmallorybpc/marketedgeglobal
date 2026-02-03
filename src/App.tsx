@@ -60,6 +60,20 @@ function ExplorePlatformPage({ onOpenChat }: PageProps) {
           </ul>
         </div>
       </div>
+      <div className="mt-12 rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Ranking Tool</p>
+        <h2 className="mt-3 text-2xl font-semibold">Compare value chains</h2>
+        <p className="mt-3 text-sm text-slate-300">
+          Compares value chains such as climate‑smart rice, shrimp, and bananas, highlighting relative strengths and
+          weaknesses.
+        </p>
+        <ul className="mt-6 space-y-3 text-sm text-slate-300">
+          <li>• Assess potential to generate income.</li>
+          <li>• Evaluate support for vulnerable groups.</li>
+          <li>• Measure sustainability contributions.</li>
+          <li>• Surface near‑term opportunities for improvement.</li>
+        </ul>
+      </div>
     </section>
   );
 }
