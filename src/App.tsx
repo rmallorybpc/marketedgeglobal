@@ -68,6 +68,11 @@ function ExplorePlatformPage({ onOpenChat }: PageProps) {
             Compares value chains such as climate‑smart rice, shrimp, and bananas, highlighting relative strengths and
             weaknesses.
           </p>
+          <div className="flex flex-wrap gap-4">
+            <button className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold" type="button">
+              Open Ranking Tool
+            </button>
+          </div>
         </div>
         <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
           <ul className="space-y-3 text-sm text-slate-300">
