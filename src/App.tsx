@@ -69,12 +69,12 @@ function ExplorePlatformPage({ onOpenChat }: PageProps) {
             weaknesses.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link
+            <a
               className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
-              to="/explore-platform/ranking-tool/"
+              href={`${import.meta.env.BASE_URL}explore-platform/ranking-tool/`}
             >
               Open Ranking Tool
-            </Link>
+            </a>
           </div>
         </div>
         <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
