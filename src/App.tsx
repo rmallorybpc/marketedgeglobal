@@ -71,7 +71,7 @@ function ExplorePlatformPage({ onOpenChat }: PageProps) {
           <div className="flex flex-wrap gap-4">
             <Link
               className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
-              to="/explore-platform/bd-assistant/"
+              to="/explore-platform/ranking-tool/"
             >
               Open Ranking Tool
             </Link>
