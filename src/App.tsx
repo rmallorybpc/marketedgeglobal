@@ -554,9 +554,6 @@ function App() {
                   {isSending ? "Sending..." : "Send"}
                 </button>
               </div>
-              <p className="mt-2 text-[11px] text-slate-500">
-                Set VITE_AGENT_API_URL to your backend endpoint (e.g. https://api.yourdomain.com/agent).
-              </p>
             </div>
           </div>
         </div>
