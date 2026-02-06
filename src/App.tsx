@@ -369,8 +369,9 @@ function Layout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <header className="border-b border-slate-800">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <Link className="text-lg font-semibold tracking-wide" to="/">
-            PartnerAI™
+          <Link className="flex items-center gap-3" to="/">
+            <img src="/assets/partnerai-logo.png" alt="PartnerAI logo" className="w-8 h-8 object-contain" />
+            <span className="text-lg font-semibold tracking-wide">PartnerAI™</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
             <Link className="hover:text-white" to="/features/">
@@ -404,8 +405,9 @@ function Layout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
           <span>© 2026 MarketEdge. PartnerAI™ is a trademark of MarketEdge. All rights reserved.</span>
           <div className="flex gap-6">
-            <span>Privacy</span>
-            <span>Terms</span>
+            <a className="hover:text-white" href="#privacy">Privacy</a>
+            <a className="hover:text-white" href="#terms">Terms</a>
+            <Link className="hover:text-white" to="/legal/">Legal</Link>
           </div>
         </div>
       </footer>
