@@ -102,6 +102,7 @@ export function GetStartedPage(_: PageProps) {
     const financialId = import.meta.env.VITE_OPENAI_FINANCIAL_ASSISTANT_ID ?? 'asst_2BNcG5OJXbPfhDmCadhC7aGM';
     const operationsId = import.meta.env.VITE_OPENAI_OPERATIONS_ASSISTANT_ID ?? 'asst_pGMkUNldDi6EXOQKvpM26Gtb';
     const bdId = import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP';
+    const marketingId = import.meta.env.VITE_OPENAI_MARKETING_ASSISTANT_ID ?? 'asst_8XjZDwU3nU8PzDcqcOHqK2KU';
     let initialMessages: ChatMessage[] = [];
     if (name === "Coms Support Coach" || id === import.meta.env.VITE_OPENAI_ASSISTANT_ID) {
       initialMessages = [
@@ -133,6 +134,14 @@ export function GetStartedPage(_: PageProps) {
           role: "assistant",
           content:
             "Hello — I'm the Business Development Support assistant. I can help with partnership outreach, proposal framing, market research, and engagement strategies. Attach briefs or partner info and I'll provide recommendations.",
+        },
+      ];
+    } else if (name === "Marketing and Communications" || id === marketingId) {
+      initialMessages = [
+        {
+          role: "assistant",
+          content:
+            "Hello — I'm the Marketing and Communications assistant. I can help with strategy development, messaging, campaign planning, stakeholder communication, and brand positioning. Attach briefs, messaging documents, or communication plans for feedback.",
         },
       ];
     }
@@ -201,6 +210,13 @@ export function GetStartedPage(_: PageProps) {
                 onClick={() => openAssistant(import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP', "Business Development Support")}
               >
                 Chat with Business Development Support
+              </button>
+              
+              <button
+                className="rounded-full bg-pink-500 px-4 py-2 text-sm font-semibold hover:bg-pink-600"
+                onClick={() => openAssistant(import.meta.env.VITE_OPENAI_MARKETING_ASSISTANT_ID ?? 'asst_8XjZDwU3nU8PzDcqcOHqK2KU', "Marketing and Communications")}
+              >
+                Chat with Marketing and Communications
               </button>
             </div>
           </div>
