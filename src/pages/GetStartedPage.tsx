@@ -102,6 +102,7 @@ export function GetStartedPage(_: PageProps) {
     const financialId = import.meta.env.VITE_OPENAI_FINANCIAL_ASSISTANT_ID ?? 'asst_2BNcG5OJXbPfhDmCadhC7aGM';
     const operationsId = import.meta.env.VITE_OPENAI_OPERATIONS_ASSISTANT_ID ?? 'asst_pGMkUNldDi6EXOQKvpM26Gtb';
     const bdId = import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP';
+    const publicationId = import.meta.env.VITE_OPENAI_PUBLICATION_ASSISTANT_ID ?? 'asst_Nctx1jt9HAMfvAp99cfpxNXU';
     let initialMessages: ChatMessage[] = [];
     if (name === "Coms Support Coach" || id === import.meta.env.VITE_OPENAI_ASSISTANT_ID) {
       initialMessages = [
@@ -136,6 +137,15 @@ export function GetStartedPage(_: PageProps) {
         },
       ];
     }
+    else if (name === "Publication Review Support" || id === publicationId) {
+      initialMessages = [
+        {
+          role: "assistant",
+          content:
+            "Hello — I'm Publication Review Support. I can help review drafts, check structure, suggest edits for clarity and academic tone, and verify references and formatting. Attach manuscripts, figures, or reviewer comments and I'll assist.",
+        },
+      ];
+    }
     setMessages(initialMessages);
     setIsChatOpen(true);
   };
@@ -160,6 +170,14 @@ export function GetStartedPage(_: PageProps) {
               Leverage our agents trained in advanced analytics for data-driven insights, streamlining
               decision-making and program effectiveness.
             </p>
+            <div className="mt-4">
+              <button
+                className="rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold hover:bg-violet-700"
+                onClick={() => openAssistant(import.meta.env.VITE_OPENAI_PUBLICATION_ASSISTANT_ID ?? 'asst_Nctx1jt9HAMfvAp99cfpxNXU', "Publication Review Support")}
+              >
+                Chat with Publication Review Support
+              </button>
+            </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
             <h3 className="text-lg font-semibold">Learning Companion</h3>
