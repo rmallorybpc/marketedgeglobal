@@ -94,19 +94,14 @@ export function GetStartedPage({ onOpenChat }: PageProps) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="space-y-8">
-        <div className="flex items-start gap-6">
-          <div className="flex-shrink-0">
-            <img src="/assets/partnerai-logo.png" alt="PartnerAI logo" className="w-28 h-28 object-contain" />
-          </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">PartnerAI™</p>
-            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-              AI that turns insight into action across complex social impact systems
-            </h1>
-            <p className="mt-4 text-lg text-slate-300 max-w-3xl">
-              PartnerAI™ is a proprietary, trademarked AI platform developed and owned by MarketEdge. It embeds AI directly into delivery, portfolio management, and decision-making workflows for social impact organizations operating across multiple stakeholders, incentives, and reporting demands.
-            </p>
-          </div>
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">PartnerAI™</p>
+          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+            AI that turns insight into action across complex social impact systems
+          </h1>
+          <p className="mt-4 text-lg text-slate-300 max-w-3xl">
+            PartnerAI™ is a proprietary, trademarked AI platform developed and owned by MarketEdge. It embeds AI directly into delivery, portfolio management, and decision-making workflows for social impact organizations operating across multiple stakeholders, incentives, and reporting demands.
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
