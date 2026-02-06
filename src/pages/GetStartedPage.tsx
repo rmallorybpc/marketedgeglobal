@@ -102,8 +102,6 @@ export function GetStartedPage(_: PageProps) {
     const financialId = import.meta.env.VITE_OPENAI_FINANCIAL_ASSISTANT_ID ?? 'asst_2BNcG5OJXbPfhDmCadhC7aGM';
     const operationsId = import.meta.env.VITE_OPENAI_OPERATIONS_ASSISTANT_ID ?? 'asst_pGMkUNldDi6EXOQKvpM26Gtb';
     const bdId = import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP';
-    const publicationId = import.meta.env.VITE_OPENAI_PUBLICATION_ASSISTANT_ID ?? 'asst_Nctx1jt9HAMfvAp99cfpxNXU';
-    const ramiroId = import.meta.env.VITE_OPENAI_RAMIRO_ASSISTANT_ID ?? 'asst_LwQ63jo5RMN3WTwMeSnTRbun';
     let initialMessages: ChatMessage[] = [];
     if (name === "Coms Support Coach" || id === import.meta.env.VITE_OPENAI_ASSISTANT_ID) {
       initialMessages = [
@@ -138,25 +136,6 @@ export function GetStartedPage(_: PageProps) {
         },
       ];
     }
-    else if (name === "Publication Review Support" || id === publicationId) {
-      initialMessages = [
-        {
-          role: "assistant",
-          content:
-            "Hello — I'm Publication Review Support. I can help review drafts, check structure, suggest edits for clarity and academic tone, and verify references and formatting. Attach manuscripts, figures, or reviewer comments and I'll assist.",
-        },
-      ];
-    }
-    else if (name === "Ramiro - The Bolivian Rancher" || id === ramiroId) {
-      initialMessages = [
-        {
-          role: "assistant",
-          content:
-            "Hola — I'm Ramiro, the Bolivian Rancher. I can role-play local stakeholder perspectives about land use, livestock, community priorities, and traditional practices. Ask me about local constraints, cultural context, or attach field notes and I'll respond as Ramiro.",
-        },
-      ];
-    }
-    
     setMessages(initialMessages);
     setIsChatOpen(true);
   };
@@ -181,29 +160,13 @@ export function GetStartedPage(_: PageProps) {
               Leverage our agents trained in advanced analytics for data-driven insights, streamlining
               decision-making and program effectiveness.
             </p>
-            <div className="mt-4">
-              <button
-                className="rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold hover:bg-violet-700"
-                onClick={() => openAssistant(import.meta.env.VITE_OPENAI_PUBLICATION_ASSISTANT_ID ?? 'asst_Nctx1jt9HAMfvAp99cfpxNXU', "Publication Review Support")}
-              >
-                Chat with Publication Review Support
-              </button>
-            </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-            <h3 className="text-lg font-semibold">Practice Engaging Stakeholders</h3>
+            <h3 className="text-lg font-semibold">Learning Companion</h3>
             <p className="mt-3 text-sm text-slate-400">
               Enhance learning through AI-powered guidance, interactive simulations, and tailored
               learning pathways.
             </p>
-            <div className="mt-4">
-              <button
-                className="rounded-full bg-rose-500 px-4 py-2 text-sm font-semibold hover:bg-rose-600"
-                onClick={() => openAssistant(import.meta.env.VITE_OPENAI_RAMIRO_ASSISTANT_ID ?? 'asst_LwQ63jo5RMN3WTwMeSnTRbun', "Ramiro - The Bolivian Rancher")}
-              >
-                Chat with Ramiro — The Bolivian Rancher
-              </button>
-            </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
             <h3 className="text-lg font-semibold">Task Assistant Automations</h3>
@@ -252,6 +215,9 @@ export function GetStartedPage(_: PageProps) {
 
         <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
           <h2 className="text-2xl font-semibold">About PartnerAI™</h2>
+          <p className="mt-3 text-slate-400">
+            PartnerAI™ exists for one reason: most AI tools fail in real-world impact settings. They add parallel systems, increase reporting burden, and generate insights disconnected from authority and action. PartnerAI™ integrates where work already happens, strengthens human judgment, and improves coordination across teams and institutions.
+          </p>
 
           <h3 className="mt-6 text-lg font-semibold">Why PartnerAI™</h3>
           <p className="mt-2 text-slate-400">
