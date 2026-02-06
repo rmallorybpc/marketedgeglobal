@@ -104,7 +104,6 @@ export function GetStartedPage(_: PageProps) {
     const bdId = import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP';
     const publicationId = import.meta.env.VITE_OPENAI_PUBLICATION_ASSISTANT_ID ?? 'asst_Nctx1jt9HAMfvAp99cfpxNXU';
     const ramiroId = import.meta.env.VITE_OPENAI_RAMIRO_ASSISTANT_ID ?? 'asst_LwQ63jo5RMN3WTwMeSnTRbun';
-    const ramiroId = import.meta.env.VITE_OPENAI_RAMIRO_ASSISTANT_ID ?? 'asst_LwQ63jo5RMN3WTwMeSnTRbun';
     let initialMessages: ChatMessage[] = [];
     if (name === "Coms Support Coach" || id === import.meta.env.VITE_OPENAI_ASSISTANT_ID) {
       initialMessages = [
@@ -157,15 +156,7 @@ export function GetStartedPage(_: PageProps) {
         },
       ];
     }
-    else if (name === "Ramiro - The Bolivian Rancher" || id === ramiroId) {
-      initialMessages = [
-        {
-          role: "assistant",
-          content:
-            "Hola — I'm Ramiro, the Bolivian Rancher. I can role-play farmer perspectives, provide local context on rural livelihoods, and review outreach language for cultural fit. Share scenarios or materials and I'll respond as Ramiro.",
-        },
-      ];
-    }
+    
     setMessages(initialMessages);
     setIsChatOpen(true);
   };
