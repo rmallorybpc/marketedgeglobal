@@ -369,9 +369,8 @@ function Layout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <header className="border-b border-slate-800">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <Link className="flex items-center gap-3" to="/">
-            <img src="/assets/partnerai-logo.png" alt="PartnerAI logo" className="w-8 h-8 object-contain" />
-            <span className="text-lg font-semibold tracking-wide">PartnerAI™</span>
+          <Link className="text-lg font-semibold tracking-wide" to="/">
+            PartnerAI™
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
             <Link className="hover:text-white" to="/features/">
