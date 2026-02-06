@@ -190,6 +190,37 @@ app.post(/^(.+\/)?assistant$/, async (request, response) => {
   }
 });
 
+// List assistants (server-side) so the frontend can discover assistants
+// without baking IDs into the client build.
+app.get(/^(.+\/)?assistants$/, async (request, response) => {
+  if (!process.env.OPENAI_API_KEY) {
+    return response.status(500).json({ error: "OPENAI_API_KEY is not configured" });
+  }
+
+  try {
+    const r = await fetch("https://api.openai.com/v1/assistants", {
+      headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+    });
+
+    if (!r.ok) {
+      const text = await r.text();
+      return response.status(r.status).json({ error: text });
+    }
+
+    const data = await r.json();
+    const assistants = (data.data || []).map((a) => ({
+      id: a.id,
+      name: a.name || (a.metadata && a.metadata.title) || "Assistant",
+      description: a.metadata?.description || "",
+    }));
+
+    return response.json({ assistants });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Unexpected error";
+    return response.status(500).json({ error: message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Agent proxy listening on http://localhost:${port}`);
 });
