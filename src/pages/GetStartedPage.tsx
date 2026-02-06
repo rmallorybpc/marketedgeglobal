@@ -250,6 +250,9 @@ export function GetStartedPage(_: PageProps) {
           </div>
         </div>
 
+        <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
+          <h2 className="text-2xl font-semibold">About PartnerAI™</h2>
+
           <h3 className="mt-6 text-lg font-semibold">Why PartnerAI™</h3>
           <p className="mt-2 text-slate-400">
             Social impact organizations operate under tight constraints. Teams juggle delivery, partnerships, learning, and accountability across funders, coordinating entities, and local implementers. PartnerAI™ addresses this gap with a single, integrated operating environment that supports different users without flattening their needs.
