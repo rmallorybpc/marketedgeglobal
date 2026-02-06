@@ -1,5 +1,6 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { GetStartedPage } from "./pages/GetStartedPage";
 
 const features = [
   {
@@ -486,6 +487,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/features/" element={<FeaturesPage />} />
+          <Route path="/get-started/" element={<GetStartedPage />} />
           <Route
             path="/explore-platform/"
             element={<ExplorePlatformPage onOpenChat={() => setIsChatOpen(true)} />}
