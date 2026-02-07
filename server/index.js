@@ -159,6 +159,45 @@ async function assistantProxyHandler(request, response) {
     if (!runRes.ok) {
       const text = await runRes.text();
       console.error("start run error:", text);
+      // If the Assistants API rejects an `input` parameter in some
+      // deployments, fall back to the Responses API as a compatibility
+      // measure so the frontend still receives a reply.
+      if (String(text).includes("Unknown parameter: 'input'")) {
+        try {
+          const inputs = Array.isArray(messages)
+            ? messages.map((m) => (typeof m === 'string' ? m : String(m.content))).join("\n")
+            : String(messages);
+          const payload = {
+            model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
+            input: inputs,
+            temperature: 0.3,
+          };
+          const fb = await fetch('https://api.openai.com/v1/responses', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+            },
+            body: JSON.stringify(payload),
+          });
+          if (!fb.ok) {
+            const fbText = await fb.text();
+            console.error('responses fallback error:', fbText);
+            return response.status(fb.status).json({ error: fbText, source: 'responses_fallback' });
+          }
+          const fbData = await fb.json();
+          const outputText = fbData.output_text ?? (fbData.output || [])
+            .flatMap((item) => item.content || [])
+            .filter((c) => c.type === 'output_text')
+            .map((c) => c.text)
+            .join('\n');
+          return response.json({ reply: outputText || 'Sorry, no reply', fallback: 'responses_api' });
+        } catch (e) {
+          const msg = e instanceof Error ? e.message : 'fallback error';
+          console.error('responses fallback exception:', msg);
+          return response.status(500).json({ error: msg, source: 'responses_fallback_exception' });
+        }
+      }
       return response.status(runRes.status).json({ error: text, source: "start_run" });
     }
 
