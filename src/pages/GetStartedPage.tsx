@@ -265,6 +265,16 @@ export function GetStartedPage(_: PageProps) {
               Gain comprehensive assessments of organizational capacity and performance for strategic
               growth and impact.
             </p>
+            <div className="mt-4">
+              <a
+                href="https://form.typeform.com/to/QLgS0bbC"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold hover:bg-indigo-600"
+              >
+                Organization Self-Assessment Survey
+              </a>
+            </div>
           </div>
         </div>
 
