@@ -143,10 +143,6 @@ export function GetStartedPage(_: PageProps) {
     setCurrentAssistantId(resolvedId);
     setCurrentAssistantName(name);
     // Set initial messages per assistant so previews match the selected agent
-    const financialId = import.meta.env.VITE_OPENAI_FINANCIAL_ASSISTANT_ID ?? 'asst_2BNcG5OJXbPfhDmCadhC7aGM';
-    const operationsId = import.meta.env.VITE_OPENAI_OPERATIONS_ASSISTANT_ID ?? 'asst_pGMkUNldDi6EXOQKvpM26Gtb';
-    const bdId = import.meta.env.VITE_OPENAI_BD_ASSISTANT_ID ?? 'asst_yzDWzTYPE7bJf4vbqQlklmiP';
-    const marketingId = import.meta.env.VITE_OPENAI_MARKETING_ASSISTANT_ID ?? 'asst_8XjZDwU3nU8PzDcqcOHqK2KU';
     let initialMessages: ChatMessage[] = [];
     if (name === "Financial Management Help" || id === financialId) {
       initialMessages = [
