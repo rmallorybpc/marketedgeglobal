@@ -209,6 +209,16 @@ export function GetStartedPage(_: PageProps) {
               Leverage our agents trained in advanced analytics for data-driven insights, streamlining
               decision-making and program effectiveness.
             </p>
+            <div className="mt-4">
+              <a
+                href="https://marketedgeglobal.github.io/marketedgeglobal/explore-platform/ranking-tool/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold hover:bg-emerald-700"
+              >
+                Ranking Tool
+              </a>
+            </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
             <h3 className="text-lg font-semibold">Learning Companion</h3>
