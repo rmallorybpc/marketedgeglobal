@@ -282,10 +282,10 @@ export function GetStartedPage(_: PageProps) {
                 Organization Self-Assessment Survey
               </a>
               <button
-                onClick={() => openAssistant('asst_lNZmqTy4I8QV9HuL0JkTztkX', 'Organization Diagnostics Coach')}
+                onClick={() => openAssistant('asst_hHsISiXIwBAUtUtCxmIggMd8', 'Organization Diagnostic Virtual Coach')}
                 className="rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold hover:bg-sky-600"
               >
-                Organization Diagnostics Coach
+                Organization Diagnostic Virtual Coach
               </button>
             </div>
           </div>
