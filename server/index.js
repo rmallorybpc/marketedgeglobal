@@ -139,7 +139,7 @@ async function assistantProxyHandler(request, response) {
           Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
           "OpenAI-Beta": "assistants=v2",
         },
-        body: JSON.stringify(msgBody),
+        body: JSON.stringify({ messages: [msgBody] }),
       });
 
       if (!postMsgRes.ok) {
