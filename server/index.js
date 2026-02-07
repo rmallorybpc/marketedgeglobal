@@ -108,6 +108,7 @@ async function assistantProxyHandler(request, response) {
     }
 
     const createData = await createRes.json();
+    console.log("Thread created", createData);
     const threadId = createData.id;
 
     // Prepare input content from incoming messages. Prefer sending the
@@ -137,6 +138,7 @@ async function assistantProxyHandler(request, response) {
     }
 
     const runData = await runRes.json();
+    console.log("Run started", runData);
     const runId = runData.id;
 
     // Poll for completion
@@ -155,6 +157,7 @@ async function assistantProxyHandler(request, response) {
       }
 
       const statusData = await statusRes.json();
+      console.log("Run status poll", { attempt: attempts + 1, status: statusData.status });
       isComplete = statusData.status === "completed";
       attempts++;
     }
@@ -174,7 +177,7 @@ async function assistantProxyHandler(request, response) {
     }
 
     const messagesData = await messagesRes.json();
-    console.log("Assistant messages fetched", { count: (messagesData.data || []).length });
+    console.log("Assistant messages fetched", { count: (messagesData.data || []).length, messagesData });
     const assistantMessage = (messagesData.data || []).reverse().find((m) => m.role === "assistant");
 
     if (!assistantMessage) {
@@ -184,7 +187,8 @@ async function assistantProxyHandler(request, response) {
     const textContent = (assistantMessage.content || []).find((c) => c.type === "text");
     const reply = textContent?.text?.value ?? "";
 
-    return response.json({ reply });
+    // Return the assistant reply plus the raw run and messages for debugging.
+    return response.json({ reply, run: runData, messages: messagesData });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unexpected error";
     return response.status(500).json({ error: message });
