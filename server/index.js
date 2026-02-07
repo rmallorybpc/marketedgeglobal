@@ -125,24 +125,33 @@ async function assistantProxyHandler(request, response) {
     // deployments reject an `input` top-level param, so we prefer the
     // messages route and then start the run separately.
     console.log("Posting thread messages", { threadId, assistant_id, contentPayload });
-    const postMsgRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "OpenAI-Beta": "assistants=v2",
-      },
-      body: JSON.stringify({ content: contentPayload }),
-    });
+    const messagesToPost = Array.isArray(messages) ? messages : [messages];
+    const postedMsgResults = [];
+    for (const m of messagesToPost) {
+      const role = (m && m.role) || "user";
+      const text = typeof m === "string" ? String(m) : String(m?.content ?? "");
+      const msgBody = { role, content: [{ type: "input_text", text }] };
+      console.log("Posting single thread message", msgBody);
+      const postMsgRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          "OpenAI-Beta": "assistants=v2",
+        },
+        body: JSON.stringify(msgBody),
+      });
 
-    if (!postMsgRes.ok) {
-      const text = await postMsgRes.text();
-      console.error("post message error:", text);
-      return response.status(postMsgRes.status).json({ error: text, source: "post_message" });
+      if (!postMsgRes.ok) {
+        const text = await postMsgRes.text();
+        console.error("post message error:", text);
+        return response.status(postMsgRes.status).json({ error: text, source: "post_message" });
+      }
+
+      const postedMsgData = await postMsgRes.json();
+      console.log("Thread message posted", postedMsgData);
+      postedMsgResults.push(postedMsgData);
     }
-
-    const postedMsgData = await postMsgRes.json();
-    console.log("Thread message posted", postedMsgData);
 
     // Start a run for the assistant without using the `input` parameter
     // (some API versions reject it). The assistant will use the thread
