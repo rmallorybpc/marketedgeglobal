@@ -243,6 +243,12 @@ export function GetStartedPage(_: PageProps) {
                     {a.name}
                   </button>
                 ))}
+              <button
+                onClick={() => openAssistant('asst_Efsxetzg8NyymK7AIit4knip', 'Jannatul - Bangladeshi University Student')}
+                className="rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold hover:bg-sky-600"
+              >
+                Jannatul - Bangladeshi University Student
+              </button>
             </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
