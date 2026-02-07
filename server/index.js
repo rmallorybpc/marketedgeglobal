@@ -153,7 +153,7 @@ app.post(/^(.+\/)?assistant$/, assistantProxyHandler);
 
 // List assistants (server-side) so the frontend can discover assistants
 // without baking IDs into the client build.
-app.get(/^(.+\/)?assistants$/, async (request, response) => {
+const assistantsHandler = async (request, response) => {
   if (!process.env.OPENAI_API_KEY) {
     return response.status(500).json({ error: "OPENAI_API_KEY is not configured" });
   }
@@ -180,7 +180,10 @@ app.get(/^(.+\/)?assistants$/, async (request, response) => {
     const message = err instanceof Error ? err.message : "Unexpected error";
     return response.status(500).json({ error: message });
   }
-});
+};
+
+app.get('/assistants', assistantsHandler);
+app.get(/^(.+\/)?assistants$/, assistantsHandler);
 
 const host = process.env.HOST || '0.0.0.0';
 const server = app.listen(port, host, () => {
