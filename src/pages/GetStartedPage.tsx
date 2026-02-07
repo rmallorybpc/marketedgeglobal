@@ -275,7 +275,7 @@ export function GetStartedPage(_: PageProps) {
               Gain comprehensive assessments of organizational capacity and performance for strategic
               growth and impact.
             </p>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-wrap gap-3">
               <a
                 href="https://form.typeform.com/to/QLgS0bbC"
                 target="_blank"
@@ -284,6 +284,12 @@ export function GetStartedPage(_: PageProps) {
               >
                 Organization Self-Assessment Survey
               </a>
+              <button
+                onClick={() => openAssistant('asst_lNZmqTy4I8QV9HuL0JkTztkX', 'Organization Diagnostics Coach')}
+                className="rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold hover:bg-sky-600"
+              >
+                Organization Diagnostics Coach
+              </button>
             </div>
           </div>
         </div>
