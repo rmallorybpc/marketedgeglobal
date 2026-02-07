@@ -1,6 +1,6 @@
 # PartnerAI (MarketEdge)
 
-PartnerAI™ is the platform front-end for MarketEdge's AI-enabled tooling. This React + TypeScript app demonstrates the PartnerAI interface and the Coms Support Coach integration. The project uses Vite, Tailwind CSS, and Material UI.
+PartnerAI™ is the platform front-end for MarketEdge's AI-enabled tooling. This React + TypeScript app demonstrates the PartnerAI interface and several assistant integrations. The project uses Vite, Tailwind CSS, and Material UI.
 
 ## Tech Stack
 
