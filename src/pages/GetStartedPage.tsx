@@ -249,6 +249,12 @@ export function GetStartedPage(_: PageProps) {
               >
                 Jannatul - Bangladeshi University Student
               </button>
+              <button
+                onClick={() => openAssistant('asst_zHLROcxpPw6Ho1AOlZh3Sv7N', 'Nilar Tun - Agribusiness Exporter from Myanmar')}
+                className="rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold hover:bg-sky-600"
+              >
+                Nilar Tun - Agribusiness Exporter from Myanmar
+              </button>
             </div>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
