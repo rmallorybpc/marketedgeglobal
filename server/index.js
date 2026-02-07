@@ -90,182 +90,45 @@ async function assistantProxyHandler(request, response) {
   }
 
   try {
-    console.log("Assistant proxy body", { assistant_id, messages_length: Array.isArray(messages) ? messages.length : 0 });
-    // Create a thread
-    const createRes = await fetch("https://api.openai.com/v1/threads", {
-      method: "POST",
+    console.log("Assistant proxy body", { assistant_id, messages_length: Array.isArray(messages) ? messages.length : 0, messages });
+    // Simpler compatibility path: use the Responses API directly with the
+    // combined user messages to avoid Assistants-specific schema mismatches
+    // that vary between deployments. This returns an immediate text reply.
+    const inputs = Array.isArray(messages)
+      ? messages.map((m) => (typeof m === 'string' ? m : String(m.content))).join('\n')
+      : String(messages);
+
+    const payload = {
+      model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
+      input: inputs,
+      temperature: 0.3,
+    };
+
+    const apiResponse = await fetch('https://api.openai.com/v1/responses', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "OpenAI-Beta": "assistants=v2",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify(payload),
     });
 
-    if (!createRes.ok) {
-      const text = await createRes.text();
-      console.error("create thread error:", text);
-      return response.status(createRes.status).json({ error: text, source: "create_thread" });
+    if (!apiResponse.ok) {
+      const errorText = await apiResponse.text();
+      console.error('responses API error:', errorText);
+      return response.status(apiResponse.status).json({ error: errorText, source: 'responses_api' });
     }
 
-    const createData = await createRes.json();
-    console.log("Thread created", createData);
-    const threadId = createData.id;
+    const data = await apiResponse.json();
+    const outputText =
+      data.output_text ??
+      (data.output || [])
+        .flatMap((item) => item.content || [])
+        .filter((content) => content.type === 'output_text')
+        .map((content) => content.text)
+        .join('\n');
 
-    // Prepare input content from incoming messages. Prefer sending the
-    // user text directly as the run `input` so the assistant receives a
-    // single, explicit text input instead of relying on thread message
-    // semantics which may trigger file-detection heuristics.
-    const contentPayload = Array.isArray(messages)
-      ? messages.map((m) => ({ type: "input_text", text: String(m.content) }))
-      : [{ type: "input_text", text: String(messages) }];
-
-    // Post thread messages with the content entries so the assistant
-    // receives the user text as normal messages. Some Assistants API
-    // deployments reject an `input` top-level param, so we prefer the
-    // messages route and then start the run separately.
-    console.log("Posting thread messages", { threadId, assistant_id, contentPayload });
-    const messagesToPost = Array.isArray(messages) ? messages : [messages];
-    const postedMsgResults = [];
-    for (const m of messagesToPost) {
-      const role = (m && m.role) || "user";
-      const text = typeof m === "string" ? String(m) : String(m?.content ?? "");
-      const msgBody = { role, content: [{ type: "input_text", text }] };
-      console.log("Posting single thread message", msgBody);
-      const postMsgRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/messages`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          "OpenAI-Beta": "assistants=v2",
-        },
-        body: JSON.stringify({ messages: [msgBody] }),
-      });
-
-      if (!postMsgRes.ok) {
-        const text = await postMsgRes.text();
-        console.error("post message error:", text);
-        return response.status(postMsgRes.status).json({ error: text, source: "post_message" });
-      }
-
-      const postedMsgData = await postMsgRes.json();
-      console.log("Thread message posted", postedMsgData);
-      postedMsgResults.push(postedMsgData);
-    }
-
-    // Start a run for the assistant without using the `input` parameter
-    // (some API versions reject it). The assistant will use the thread
-    // messages we just posted as its input context.
-    console.log("Starting run", { threadId, assistant_id });
-    const runRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/runs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "OpenAI-Beta": "assistants=v2",
-      },
-      body: JSON.stringify({ assistant_id }),
-    });
-
-    if (!runRes.ok) {
-      const text = await runRes.text();
-      console.error("start run error:", text);
-      // If the Assistants API rejects an `input` parameter in some
-      // deployments, fall back to the Responses API as a compatibility
-      // measure so the frontend still receives a reply.
-      if (String(text).includes("Unknown parameter: 'input'")) {
-        try {
-          const inputs = Array.isArray(messages)
-            ? messages.map((m) => (typeof m === 'string' ? m : String(m.content))).join("\n")
-            : String(messages);
-          const payload = {
-            model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
-            input: inputs,
-            temperature: 0.3,
-          };
-          const fb = await fetch('https://api.openai.com/v1/responses', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-            },
-            body: JSON.stringify(payload),
-          });
-          if (!fb.ok) {
-            const fbText = await fb.text();
-            console.error('responses fallback error:', fbText);
-            return response.status(fb.status).json({ error: fbText, source: 'responses_fallback' });
-          }
-          const fbData = await fb.json();
-          const outputText = fbData.output_text ?? (fbData.output || [])
-            .flatMap((item) => item.content || [])
-            .filter((c) => c.type === 'output_text')
-            .map((c) => c.text)
-            .join('\n');
-          return response.json({ reply: outputText || 'Sorry, no reply', fallback: 'responses_api' });
-        } catch (e) {
-          const msg = e instanceof Error ? e.message : 'fallback error';
-          console.error('responses fallback exception:', msg);
-          return response.status(500).json({ error: msg, source: 'responses_fallback_exception' });
-        }
-      }
-      return response.status(runRes.status).json({ error: text, source: "start_run" });
-    }
-
-    const runData = await runRes.json();
-    console.log("Run started", runData);
-    const runId = runData.id;
-
-    // Poll for completion
-    let isComplete = false;
-    let attempts = 0;
-    const maxAttempts = 30;
-    while (!isComplete && attempts < maxAttempts) {
-      await new Promise((r) => setTimeout(r, 1000));
-      const statusRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/runs/${runId}`, {
-        headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "OpenAI-Beta": "assistants=v2" },
-      });
-
-      if (!statusRes.ok) {
-        const text = await statusRes.text();
-        console.error("run status poll error:", text);
-        return response.status(statusRes.status).json({ error: text, source: "run_status" });
-      }
-
-      const statusData = await statusRes.json();
-      console.log("Run status poll", { attempt: attempts + 1, status: statusData.status });
-      isComplete = statusData.status === "completed";
-      attempts++;
-    }
-
-    if (!isComplete) {
-      return response.status(504).json({ error: "Assistant run timed out" });
-    }
-
-    // Fetch messages
-    const messagesRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/messages`, {
-      headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "OpenAI-Beta": "assistants=v2" },
-    });
-
-    if (!messagesRes.ok) {
-      const text = await messagesRes.text();
-      console.error("fetch messages error:", text);
-      return response.status(messagesRes.status).json({ error: text, source: "fetch_messages" });
-    }
-
-    const messagesData = await messagesRes.json();
-    console.log("Assistant messages fetched", { count: (messagesData.data || []).length, messagesData });
-    const assistantMessage = (messagesData.data || []).reverse().find((m) => m.role === "assistant");
-
-    if (!assistantMessage) {
-      return response.status(500).json({ error: "No assistant response found" });
-    }
-
-    const textContent = (assistantMessage.content || []).find((c) => c.type === "text");
-    const reply = textContent?.text?.value ?? "";
-
-    // Return the assistant reply plus the raw run and messages for debugging.
-    return response.json({ reply, run: runData, messages: messagesData });
+    return response.json({ reply: outputText || 'Sorry, I couldn\'t generate a reply.' });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unexpected error";
     return response.status(500).json({ error: message });
