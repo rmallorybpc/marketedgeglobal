@@ -5,7 +5,7 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 8787;
+const port = parseInt(process.env.PORT || "", 10) || 8787;
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
 
@@ -298,6 +298,8 @@ app.get(/^(.+\/)?assistants$/, async (request, response) => {
 });
 
 const host = process.env.HOST || '0.0.0.0';
-app.listen(port, host, () => {
-  console.log(`Agent proxy listening on http://${host}:${port}`);
+const server = app.listen(port, host, () => {
+  const addr = server.address();
+  const bound = typeof addr === 'string' ? addr : `${host}:${port}`;
+  console.log(`Agent proxy listening on http://${bound} (env PORT=${process.env.PORT})`);
 });
