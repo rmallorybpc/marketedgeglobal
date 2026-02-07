@@ -16,7 +16,7 @@ PartnerAI™ is the platform front-end for MarketEdge's AI-enabled tooling. This
 - Node.js 18+ (recommended)
 - npm 9+
 
-## Getting Started
+## PartnerAI demo
 
 Install dependencies:
 
@@ -73,9 +73,9 @@ The chat widget on the site calls a separate backend proxy to keep your API key 
 - Set the GitHub Actions secret VITE_AGENT_API_URL to your deployed /agent endpoint
  - Optional: use the Fly.io deployment workflow in .github/workflows/deploy-agent.yml
 
-## Getting Started Page with ChatGPT Assistant
+## PartnerAI demo Page with ChatGPT Assistant
 
-The Getting Started page includes an integrated chat widget that connects directly to an OpenAI Assistant. This allows visitors to ask questions about your organization's messaging and communications.
+The PartnerAI demo includes an integrated chat widget that connects directly to an OpenAI Assistant. This allows visitors to ask questions about your organization's messaging and communications.
 
 ### Setup
 
@@ -98,7 +98,7 @@ The Getting Started page includes an integrated chat widget that connects direct
    ```bash
    npm run dev
    ```
-   Visit `/get-started/` to test the chat widget
+   Visit `/get-started/` to test the PartnerAI demo
 
 ### Important: API Key Security
 

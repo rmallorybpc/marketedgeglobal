@@ -6,7 +6,7 @@ This directory contains documentation for the MarketEdge Global project.
 
 ## Contents
 
-- Getting Started Guide
+- PartnerAI demo Guide
 - API Documentation
 - Architecture Overview
 - Deployment Guide

@@ -111,7 +111,7 @@ function HomePage() {
               className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
               href={`${import.meta.env.BASE_URL}get-started/`}
             >
-              Get started
+              PartnerAI demo
             </a>
             <Link
               className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
@@ -254,7 +254,7 @@ function FeaturesPage() {
                 className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold"
                 href={`${import.meta.env.BASE_URL}get-started/`}
               >
-                Get started
+                PartnerAI demo
               </a>
               <Link
                 className="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200"
