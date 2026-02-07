@@ -124,6 +124,7 @@ async function assistantProxyHandler(request, response) {
     // receives the user text as normal messages. Some Assistants API
     // deployments reject an `input` top-level param, so we prefer the
     // messages route and then start the run separately.
+    console.log("Posting thread messages", { threadId, assistant_id, contentPayload });
     const postMsgRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/messages`, {
       method: "POST",
       headers: {
@@ -146,6 +147,7 @@ async function assistantProxyHandler(request, response) {
     // Start a run for the assistant without using the `input` parameter
     // (some API versions reject it). The assistant will use the thread
     // messages we just posted as its input context.
+    console.log("Starting run", { threadId, assistant_id });
     const runRes = await fetch(`https://api.openai.com/v1/threads/${threadId}/runs`, {
       method: "POST",
       headers: {
