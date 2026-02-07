@@ -237,15 +237,15 @@ export function GetStartedPage(_: PageProps) {
 
                 return (
                   <button key={name} className={cls} onClick={() => openAssistant(a.id, a.name)}>
-                    {`Chat with ${a.name}`}
-                  </button>
+                      {a.name}
+                    </button>
                 );
               })}
               <button
                 className="rounded-full bg-pink-500 px-4 py-2 text-sm font-semibold hover:bg-pink-600"
                 onClick={() => openAssistant(import.meta.env.VITE_OPENAI_MARKETING_ASSISTANT_ID ?? 'asst_8XjZDwU3nU8PzDcqcOHqK2KU', "Marketing and Communications")}
               >
-                Chat with Marketing and Communications
+                Marketing and Communications
               </button>
             </div>
           </div>
